@@ -19,4 +19,9 @@ public class ServiceFactory<T> {
         InvocationHandler handler = new ServiceProxy<>();
         return (T) Proxy.newProxyInstance(interfaceType.getClassLoader(), new Class[]{interfaceType}, handler);
     }
+
+    public T getRemoteObject(String remoteClass) {
+        InvocationHandler handler = new DynamicServiceProxy<>(remoteClass);
+        return (T) Proxy.newProxyInstance(interfaceType.getClassLoader(), new Class[]{interfaceType}, handler);
+    }
 }

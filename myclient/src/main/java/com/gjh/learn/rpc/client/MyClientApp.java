@@ -15,7 +15,9 @@ public class MyClientApp {
     public void init() {
         // init proxy objects
         ServiceFactory<TestService> factory = new ServiceFactory<>(TestService.class);
-        testService = factory.getObject();
+        // testService = factory.getObject();
+        // set remote class while initializing object, no need to touch the interface.
+        testService = factory.getRemoteObject("com.github.yeecode.easyrpc.server.service.TestService");
     }
 
     public void run() {
